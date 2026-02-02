@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="theme-color" content="#0a9396">
+    <title>بيكسل آرت | تسجيل الدخول</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* تصميم مخصص لأجهزة أندرويد مع إصلاح التمرير */
+        :root {
+            --primary-color: #0a9396;
+            --primary-dark: #005f73;
+            --primary-light: #94d2bd;
+            --primary-gradient: linear-gradient(135deg, var(--primary-light), var(--primary-color));
+            --secondary-color: #ee9b00;
+            --success-color: #2a9d8f;
+            --warning-color: #e9c46a;
+            --danger-color: #e76f51;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #64748b;
+            --border-color: #e2e8f0;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --transition-fast: 200ms;
+        }
+
+        /* إصلاح التمرير */
+        html, body {
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            touch-action: pan-y;
+        }
+
+        body {
+            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--primary-gradient);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            background: var(--bg-primary);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            overflow: hidden;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .login-header {
+            background: var(--primary-gradient);
+            padding: 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .login-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .login-logo i {
+            font-size: 2.5rem;
+        }
+
+        .login-logo h1 {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .login-subtitle {
+            font-size: 0.875rem;
+            opacity: 0.9;
+        }
+
+        .login-tabs {
+            display: flex;
+            background: var(--bg-secondary);
+            padding: 0.5rem;
+        }
+
+        .login-tab {
+            flex: 1;
+            padding: 1rem;
+            border: none;
+            background: none;
+            color: var(--text-secondary);
+            font-family: inherit;
+            font-size: 0.875rem;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+        }
+
+        .login-tab.active {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .login-form {
+            padding: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .input-with-icon {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-with-icon i {
+            position: absolute;
+            right: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .input-with-icon input {
+            width: 100%;
+            padding: 0.875rem 1rem 0.875rem 3rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--radius-md);
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 0.875rem;
+            transition: all var(--transition-fast);
+        }
+
+        .input-with-icon input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(10, 147, 150, 0.1);
+        }
+
+        .user-type-selection {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .user-type-btn {
+            padding: 1rem 0.5rem;
+            border: 2px solid var(--border-color);
+            background: var(--bg-primary);
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .user-type-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .user-type-btn.selected {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .user-type-btn i {
+            font-size: 1.5rem;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            border-radius: var(--radius-md);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all var(--transition-fast);
+            margin-top: 1rem;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(10, 147, 150, 0.25);
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        .form-footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        @media (max-width: 480px) {
+            .login-container {
+                margin: 1rem;
+                max-height: 85vh;
+            }
+            
+            .login-form {
+                padding: 1.5rem;
+            }
+            
+            .user-type-selection {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* إصلاح التمرير للجوال */
+        .login-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .login-container::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+
+        .login-container::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container" id="loginContainer">
+        <div class="login-header">
+            <div class="login-logo">
+                <i class="fas fa-palette"></i>
+                <h1>بيكسل آرت</h1>
+            </div>
+            <p class="login-subtitle">منصة وسيطة بين المصممين والعملاء</p>
+        </div>
+
+        <div class="login-tabs">
+            <button class="login-tab active" onclick="switchTab('login')">تسجيل الدخول</button>
+            <button class="login-tab" onclick="switchTab('register')">إنشاء حساب</button>
+        </div>
+
+        <!-- نموذج تسجيل الدخول -->
+        <form class="login-form" id="loginForm" onsubmit="handleLogin(event)">
+            <div class="form-group">
+                <label for="loginEmail">البريد الإلكتروني</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="loginEmail" placeholder="example@pixelart.com" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="loginPassword">كلمة المرور</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="loginPassword" placeholder="********" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>نوع المستخدم</label>
+                <div class="user-type-selection">
+                    <button type="button" class="user-type-btn selected" data-type="client">
+                        <i class="fas fa-briefcase"></i>
+                        <span>عميل</span>
+                    </button>
+                    <button type="button" class="user-type-btn" data-type="designer">
+                        <i class="fas fa-palette"></i>
+                        <span>مصمم</span>
+                    </button>
+                    <button type="button" class="user-type-btn" data-type="admin">
+                        <i class="fas fa-user-tie"></i>
+                        <span>مدير</span>
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" class="login-btn">
+                <span>تسجيل الدخول</span>
+                <i class="fas fa-sign-in-alt"></i>
+            </button>
+
+            <div class="form-footer">
+                <a href="#" onclick="showForgotPassword()">نسيت كلمة المرور؟</a>
+            </div>
+        </form>
+
+        <!-- نموذج إنشاء حساب -->
+        <form class="login-form" id="registerForm" style="display: none;" onsubmit="handleRegister(event)">
+            <div class="form-group">
+                <label for="registerName">الاسم الكامل</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="registerName" placeholder="أحمد محمد" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerEmail">البريد الإلكتروني</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-envelope"></i>
+                    <input type="email" id="registerEmail" placeholder="example@pixelart.com" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerPhone">رقم الهاتف</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-phone"></i>
+                    <input type="tel" id="registerPhone" placeholder="05xxxxxxxx" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="registerPassword">كلمة المرور</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="registerPassword" placeholder="********" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>سأكون:</label>
+                <div class="user-type-selection">
+                    <button type="button" class="user-type-btn selected" data-type="client">
+                        <i class="fas fa-briefcase"></i>
+                        <span>عميل</span>
+                        <small>أرغب في طلب خدمات التصميم</small>
+                    </button>
+                    <button type="button" class="user-type-btn" data-type="designer">
+                        <i class="fas fa-palette"></i>
+                        <span>مصمم</span>
+                        <small>أقدم خدمات التصميم</small>
+                    </button>
+                    <button type="button" class="user-type-btn" data-type="admin" disabled style="opacity: 0.5;">
+                        <i class="fas fa-user-tie"></i>
+                        <span>مدير</span>
+                        <small>للموظفين فقط</small>
+                    </button>
+                </div>
+            </div>
+
+            <button type="submit" class="login-btn">
+                <span>إنشاء حساب</span>
+                <i class="fas fa-user-plus"></i>
+            </button>
+
+            <div class="form-footer">
+                <p>بالنقر على "إنشاء حساب" فإنك توافق على <a href="#">الشروط والأحكام</a></p>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // البيانات الأولية للمستخدمين
+        const users = {
+            client: {
+                email: "client@pixelart.com",
+                password: "client123",
+                name: "أحمد العميل",
+                type: "client"
+            },
+            designer: {
+                email: "designer@pixelart.com",
+                password: "designer123",
+                name: "سارة المصممة",
+                type: "designer"
+            },
+            admin: {
+                email: "admin@pixelart.com",
+                password: "admin123",
+                name: "محمد المدير",
+                type: "admin"
+            }
+        };
+
+        let currentUserType = 'client';
+
+        // تبديل بين تسجيل الدخول وإنشاء حساب
+        function switchTab(tabName) {
+            document.querySelectorAll('.login-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            document.getElementById('loginForm').style.display = tabName === 'login' ? 'block' : 'none';
+            document.getElementById('registerForm').style.display = tabName === 'register' ? 'block' : 'none';
+        }
+
+        // اختيار نوع المستخدم
+        document.querySelectorAll('.user-type-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (!this.hasAttribute('disabled')) {
+                    document.querySelectorAll('.user-type-btn').forEach(b => {
+                        b.classList.remove('selected');
+                    });
+                    this.classList.add('selected');
+                    currentUserType = this.dataset.type;
+                }
+            });
+        });
+
+        // معالجة تسجيل الدخول
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            // التحقق من بيانات الدخول
+            let isValid = false;
+            let userData = null;
+            
+            for (const type in users) {
+                if (users[type].email === email && users[type].password === password) {
+                    isValid = true;
+                    userData = users[type];
+                    break;
+                }
+            }
+            
+            if (isValid && userData) {
+                // حفظ بيانات المستخدم في localStorage
+                localStorage.setItem('currentUser', JSON.stringify(userData));
+                localStorage.setItem('isLoggedIn', 'true');
+                
+                // توجيه المستخدم للوحة التحكم المناسبة
+                redirectToDashboard(userData.type);
+            } else {
+                alert('البريد الإلكتروني أو كلمة المرور غير صحيحة');
+            }
+        }
+
+        // معالجة إنشاء حساب
+        function handleRegister(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const phone = document.getElementById('registerPhone').value;
+            const password = document.getElementById('registerPassword').value;
+            
+            // التحقق من صحة البيانات
+            if (!name || !email || !phone || !password) {
+                alert('يرجى ملء جميع الحقول');
+                return;
+            }
+            
+            // إنشاء حساب جديد
+            const newUser = {
+                name: name,
+                email: email,
+                phone: phone,
+                type: currentUserType,
+                joinDate: new Date().toISOString(),
+                status: 'active'
+            };
+            
+            // حفظ في localStorage (في التطبيق الحقيقي سيكون API)
+            localStorage.setItem('currentUser', JSON.stringify(newUser));
+            localStorage.setItem('isLoggedIn', 'true');
+            
+            // توجيه للوحة التحكم
+            redirectToDashboard(currentUserType);
+        }
+
+        // توجيه المستخدم للوحة التحكم المناسبة
+        function redirectToDashboard(userType) {
+            switch(userType) {
+                case 'client':
+                    window.location.href = 'dashboard-client.html';
+                    break;
+                case 'designer':
+                    window.location.href = 'dashboard-designer.html';
+                    break;
+                case 'admin':
+                    window.location.href = 'dashboard-admin.html';
+                    break;
+                default:
+                    alert('نوع المستخدم غير معروف');
+            }
+        }
+
+        // عرض نافذة نسيت كلمة المرور
+        function showForgotPassword() {
+            const email = prompt('أدخل بريدك الإلكتروني لإعادة تعيين كلمة المرور:');
+            if (email) {
+                alert(`تم إرسال رابط إعادة التعيين إلى ${email}`);
+            }
+        }
+
+        // التحقق من حالة تسجيل الدخول
+        window.addEventListener('load', function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            const currentUser = JSON.parse(localStorage.getItem('currentUser') || 'null');
+            
+            if (isLoggedIn === 'true' && currentUser) {
+                redirectToDashboard(currentUser.type);
+            }
+        });
+    </script>
+</body>
+</html>
