@@ -1513,17 +1513,7 @@
 
         // تهيئة التطبيق
         function initApp() {
-            // التحقق من تسجيل الدخول
-            const savedUser = localStorage.getItem('pixelArtAdmin');
-            if (savedUser) {
-                appData.currentUser = JSON.parse(savedUser);
-                updateWelcomeMessage();
-            } else {
-                // إذا لم يكن مسجلاً، إعادة التوجيه
-                setTimeout(() => {
-                    window.location.href = '../index.html';
-                }, 1000);
-            }
+
 
             // تحميل البيانات
             loadDashboardData();
